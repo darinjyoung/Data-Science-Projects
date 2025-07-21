@@ -84,12 +84,6 @@
     </div>
   </div>
   <div id="content-container" class="flex flex-col md:flex-row w-full flex-wrap mt-6 mb-20 mx-1 md:mx-0">
-    <div id="posts-container" class="w-full md:w-1/3 px-4 py-5 mb-5 md:mb-0">
-      <h3 class="text-2xl font-semibold mb-4"><i class="fa-solid fa-magnifying-glass"></i> Digital Endeavors</h3>
-      <h4 class="text-sm italic mb-4">A collection of thoughts and findings</h4>
-      <div id="posts-list" class="space-y-4">
-        <!-- Fetched Posts Markdown files will be displayed here -->
-      </div>
     </div>
     <div id="projects-container" class="w-full md:w-2/3 px-4 py-5 mb-5 md:mb-0">
       <h3 class="text-2xl font-semibold mb-4"><i class="fa-solid fa-code"></i> Projects</h3>
@@ -119,7 +113,6 @@
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
   <script>
-      const postsList = document.getElementById('posts-list');
     const projectsList = document.getElementById('projects-list');
     const converter = new showdown.Converter({
       simpleLineBreaks: true,
@@ -127,7 +120,7 @@
       tables: true,
     });
     const baseUrl = "https://api.github.com/repos/darinjyoung/Data-Science-Projects/contents/";
-    const folders = ['posts', 'projects', 'listening'];
+    const folders = ['projects', 'listening'];
 
     async function fetchMarkdownFiles(folder) {
       const response = await fetch(`${baseUrl}${folder}`);
@@ -141,7 +134,7 @@
       }
 
       const randomFiles = shuffleArray(files);
-      const maxVisibleItems = folder === 'posts' ? 3 : folder === 'projects' ? 5 : Infinity;
+      const maxVisibleItems = folder === 'projects' ? 5 : Infinity;
       let itemCount = 0;
 
       for (const file of randomFiles) {
@@ -162,9 +155,7 @@
           `;
 
           if (itemCount < maxVisibleItems) {
-            if (folder === 'posts') {
-              postsList.innerHTML += fileCard;
-            } else if (folder === 'projects') {
+            if (folder === 'projects') {
               projectsList.innerHTML += fileCard;
             } else if (folder === 'listening') {
               document.getElementById('listening-list').innerHTML += fileCard;
@@ -172,9 +163,7 @@
           } else {
             if (folder !== 'listening') {
               const hiddenCard = `<div class='hidden'>${fileCard}</div>`;
-              if (folder === 'posts') {
-                postsList.innerHTML += hiddenCard;
-              } else if (folder === 'projects') {
+              else if (folder === 'projects') {
                 projectsList.innerHTML += hiddenCard;
               }
             }
@@ -184,7 +173,7 @@
       }
 
     if (folder !== 'listening' && itemCount > maxVisibleItems) {
-      const container = folder === 'posts' ? postsList : projectsList;
+      const container = folder : projectsList;
       createShowMoreButton(container);
     }
   }
