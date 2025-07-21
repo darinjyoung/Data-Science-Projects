@@ -3,8 +3,8 @@ An analysis of how an MLB player's salary is related to various statistics, and 
 
 ## Top 3 Skills
 
-* Data Cleaning in Jupyter Notebook (Python)
-* Regression Analysis
+* Stepwise Regression Modeling
+* Random Forest Modeling
 * Team Collaboration (this was a group project)
 <br>
 
