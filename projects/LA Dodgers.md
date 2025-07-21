@@ -1,4 +1,4 @@
-# LocalStorage Clipboard+
+# Improving Los Angeles Dodgers Attendance
 Enhance your productivity by leveraging advanced clipboard functionalities.
 
 ## Top 3 Features
