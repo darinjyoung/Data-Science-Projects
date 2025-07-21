@@ -84,7 +84,7 @@
   </div>
   <div id="content-container" class="flex flex-col md:flex-row w-full flex-wrap mt-6 mb-20 mx-1 md:mx-0">
     </div>
-    <div id="projects-container" class="w-full md:w-2/3 px-4 py-5 mb-5 md:mb-0">
+    <div id="projects-container" class="w-full px-4 py-5 mb-5">
       <h3 class="text-2xl font-semibold mb-4"><i class="fa-solid fa-code"></i> Projects</h3>
       <h4 class="text-sm italic mb-4">Discover what I do in my spare time</h4>
       <div id="projects-list" class="grid grid-cols-1 md:grid-cols-3 gap-4 flex-wrap">
@@ -134,7 +134,7 @@
       }
 
       const randomFiles = shuffleArray(files);
-      const maxVisibleItems = folder === 'posts' ? 3 : folder === 'projects' ? 5 : Infinity;
+      const maxVisibleItems = folder === 'posts' ? 3 : folder === 'projects' ? Infinity : Infinity;
       let itemCount = 0;
 
       for (const file of randomFiles) {
@@ -176,9 +176,9 @@
         }
       }
 
-    if (folder !== 'listening' && itemCount > maxVisibleItems) {
-      const container = folder === 'posts' ? postsList : projectsList;
-      createShowMoreButton(container);
+    // if (folder !== 'listening' && itemCount > maxVisibleItems) {
+      // const container = folder === 'posts' ? postsList : projectsList;
+      // createShowMoreButton(container);
     }
   }
 
