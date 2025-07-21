@@ -133,11 +133,11 @@
           return array;
       }
 
-      const randomFiles = shuffleArray(files);
+      const orderedFiles = files;
       const maxVisibleItems = folder === 'posts' ? 3 : folder === 'projects' ? 20 : Infinity;
       let itemCount = 0;
 
-      for (const file of randomFiles) {
+      for (const file of orderedFiles) {
         if (file.name.endsWith('.md')) {
           const fileRes = await fetch(file.download_url);
           const mdContent = await fileRes.text();
