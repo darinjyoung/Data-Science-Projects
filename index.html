@@ -67,15 +67,14 @@
   </style>
   <div id="particles-js"></div>
 <nav class="p-4 flex flex-wrap items-center justify-between w-full px-2 md:px-4">
-    <div>
-      <span class="text-black font-bold">Darin Young</span><span class="text-black"></span>
-    </div>
     <button id="dark-mode-toggle" class="ml-4 p-2  text-black rounded shadow-md">🌓</button>
   </nav>
   <div class="flex flex-col items-center justify-center min-h-screen">
     <div id="header-container" class="px-4 py-5 mt-8 space-x-4">
       <h1 class="text-8xl font-bold mb-10">Darin Young</h1>
-      <h2 class="text-xl mb-3">Emerging Data Professional in Higher Education and Sports Analytics
+      <h2 class="text-xl mb-3">Empathic Team Manager by Day, Innovating with AI and NoCode at Night
+        <br><b>Merging Productivity and Creativity</b></h2>
+      <br>
       <div class="flex space-x-4">
         <a href="https://www.linkedin.com/in/darinjyoung" target="_blank" class="text-xl text-black hover:text-pink-600 transition-colors duration-200 ease-in-out"><i class="fab fa-linkedin"></i></a>
         <a href="https://github.com/darinjyoung" target="_blank" class="text-xl text-black hover:text-pink-600 transition-colors duration-200 ease-in-out"><i class="fab fa-github"></i></a>
@@ -84,6 +83,12 @@
     </div>
   </div>
   <div id="content-container" class="flex flex-col md:flex-row w-full flex-wrap mt-6 mb-20 mx-1 md:mx-0">
+    <div id="posts-container" class="w-full md:w-1/3 px-4 py-5 mb-5 md:mb-0">
+      <h3 class="text-2xl font-semibold mb-4"><i class="fa-solid fa-magnifying-glass"></i> Digital Endeavors</h3>
+      <h4 class="text-sm italic mb-4">A collection of thoughts and findings</h4>
+      <div id="posts-list" class="space-y-4">
+        <!-- Fetched Posts Markdown files will be displayed here -->
+      </div>
     </div>
     <div id="projects-container" class="w-full md:w-2/3 px-4 py-5 mb-5 md:mb-0">
       <h3 class="text-2xl font-semibold mb-4"><i class="fa-solid fa-code"></i> Projects</h3>
@@ -113,14 +118,15 @@
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
   <script>
+      const postsList = document.getElementById('posts-list');
     const projectsList = document.getElementById('projects-list');
     const converter = new showdown.Converter({
       simpleLineBreaks: true,
       strikethrough: true,
       tables: true,
     });
-    const baseUrl = "https://api.github.com/repos/darinjyoung/Data-Science-Projects/contents/";
-    const folders = ['projects', 'listening'];
+    const baseUrl = "https://api.github.com/repos/tobwil/markdown_website/contents/";
+    const folders = ['posts', 'projects', 'listening'];
 
     async function fetchMarkdownFiles(folder) {
       const response = await fetch(`${baseUrl}${folder}`);
@@ -134,7 +140,7 @@
       }
 
       const randomFiles = shuffleArray(files);
-      const maxVisibleItems = folder === 'projects' ? 5 : Infinity;
+      const maxVisibleItems = folder === 'posts' ? 3 : folder === 'projects' ? 5 : Infinity;
       let itemCount = 0;
 
       for (const file of randomFiles) {
@@ -155,7 +161,9 @@
           `;
 
           if (itemCount < maxVisibleItems) {
-            if (folder === 'projects') {
+            if (folder === 'posts') {
+              postsList.innerHTML += fileCard;
+            } else if (folder === 'projects') {
               projectsList.innerHTML += fileCard;
             } else if (folder === 'listening') {
               document.getElementById('listening-list').innerHTML += fileCard;
@@ -163,7 +171,9 @@
           } else {
             if (folder !== 'listening') {
               const hiddenCard = `<div class='hidden'>${fileCard}</div>`;
-              else if (folder === 'projects') {
+              if (folder === 'posts') {
+                postsList.innerHTML += hiddenCard;
+              } else if (folder === 'projects') {
                 projectsList.innerHTML += hiddenCard;
               }
             }
@@ -173,7 +183,7 @@
       }
 
     if (folder !== 'listening' && itemCount > maxVisibleItems) {
-      const container = folder : projectsList;
+      const container = folder === 'posts' ? postsList : projectsList;
       createShowMoreButton(container);
     }
   }
