@@ -35,6 +35,14 @@
   </style>
 </head>
 <body class="bg-white relative">
+<script>
+  // Automatically enable dark mode on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('dark-mode');
+    const toggleBtn = document.getElementById("dark-mode-toggle");
+    if (toggleBtn) toggleBtn.innerText = "☀️"; // update icon to sun
+  });
+</script>
 <style>
 /* Add necessary dark mode styles for the footer */
 .dark-mode .bg-white.p-4.rounded.shadow-md.transition-colors.duration-200.hover\:bg-gray-100:hover {
