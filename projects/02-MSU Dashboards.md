@@ -9,4 +9,4 @@ I created a customized UI package that is intuitive and simple, so users can eas
 * User Interface Development
 <br>
 
-**[<i class="fa-solid fa-up-right-from-square"></i> Uncover the Project - Click Here](https://msutexas.edu/institutional-effectiveness/)**
+**[<i class="fa-solid fa-up-right-from-square"></i> Uncover the Project - Click Here](https://msutexas.edu/institutional-effectiveness/institutional-dashboards.php)**
